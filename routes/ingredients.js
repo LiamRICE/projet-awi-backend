@@ -7,6 +7,10 @@ router.get('/', (req, res, next) => {
     })
 })
 
-
+router.get('/ingredient/:ingredientId', (req, res, next) => {
+    database.query(`SELECT * FROM ingredients WHERE code=${req.params.ingredientId}`, (result)=>{
+        res.status(200).send(result);
+    })
+})
 
 module.exports = router;

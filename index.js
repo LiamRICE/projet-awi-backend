@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 
 var corsOptions = {
-    origin: "https://localhost:4000" || "",
+    origin: "https://localhost:3000" || "",
     optionsSuccessStatus: 204
 };
 
