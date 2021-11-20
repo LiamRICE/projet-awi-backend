@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 var corsOptions = {
     origin: "https://localhost:3000" || "",
@@ -18,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    res.send("Le serveur est à l'écoute.");
+    res.sendFile(path.join(__dirname, "/index.html"));
 })
 
 require('./routes')(app);

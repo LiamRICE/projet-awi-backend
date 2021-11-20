@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const database = require('../database/database');
+const bodyParser = require('body-parser');
 
-router.get('/', (req, res, next) => {
+router.use(bodyParser.urlencoded({ extended: false}));
+router.use(bodyParser.json());
+
+router.get('/techdoc-get', (req, res, next) => {
     database.query(
         `SELECT * 
         FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
@@ -11,16 +15,18 @@ router.get('/', (req, res, next) => {
     })
 })
 
-router.post('/input/', async function(req, res, next) {
-    try {
-        res.json(await techdoc.create(req.body));
-    } catch (err) {
-        console.error(`Error while creating technical doc`, err.message);
-        next(err);
-    }
+router.get('/techdocs-get', function (req, res){
+    return res.json(techdocs);
 });
 
-// curl -i -X POST -H 'Accept: application/json' \ -H 'Content-type: application/json' http://localhost:3000/technicaldoc/input/ \ --data '{"name":"Document", "header":"Header","author":"Meeee","responsable":"Also Meeee","nbserved":4}'
-// could not resolve host application?
+// requires input form with input names : name, description, author, responsable, nbserved
+router.post('/techdocput', function (req, res){
+    var techdoc = req.body;
+    database.query(`INSERT INTO technicaldoc VALUES ("${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved});`, function(err, result){
+        if(err) throw err;
+        console.log("Insert complete.")
+    });
+    res.send('User has been added successfully.');
+});
 
 module.exports = router;
