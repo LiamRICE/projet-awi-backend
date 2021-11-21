@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false}));
 router.use(bodyParser.json());
 
-router.get('/techdoc-get', (req, res, next) => {
+router.get('/header/get', (req, res, next) => {
     database.query(
         `SELECT * 
         FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
@@ -15,18 +15,14 @@ router.get('/techdoc-get', (req, res, next) => {
     })
 })
 
-router.get('/techdocs-get', function (req, res){
-    return res.json(techdocs);
-});
-
 // requires input form with input names : name, description, author, responsable, nbserved
-router.post('/techdocput', function (req, res){
-    var techdoc = req.body;
+router.post('/header/post', function (req, res){
+    let techdoc = req.body;
     database.query(`INSERT INTO technicaldoc VALUES ("${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved});`, function(err, result){
         if(err) throw err;
-        console.log("Insert complete.")
+        console.log("Insert complete.");
     });
-    res.send('User has been added successfully.');
+    res.status(200).send('Techdoc header has been added successfully.');
 });
 
 module.exports = router;
