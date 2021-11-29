@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 
 var corsOptions = {
-    origin: "https://localhost:3000" || "",
+    origin: process.env.ORIGIN || "",
     optionsSuccessStatus: 204
 };
 
