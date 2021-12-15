@@ -19,9 +19,16 @@ router.get('/get/:techdocId', (req, res, next) => {
     database.query(
         `SELECT * 
         FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
-        WHERE stepsindoc.docname = technicaldoc.name AND stepsindoc.steptitle = step.title AND stepusesingredient.steptitle = step.title AND stepusesingredient.ingredientcode = ingredients.code AND technicaldoc.name=${req.params.techdocId.lower()};`
+        WHERE stepsindoc.docname = technicaldoc.name AND stepsindoc.steptitle = step.title AND stepusesingredient.steptitle = step.title AND stepusesingredient.ingredientcode = ingredients.code;`
         , (result)=>{
-            res.status(200).send(result);
+            let obj = json.parse(result);
+            let finalObj = []
+            for(res in obj){
+                if(res.name == req.params.techdocId){
+                    finalObj.append(res)
+                }
+            }
+            res.status(200).send(finalObj);
         })
 })
 
