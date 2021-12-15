@@ -5,20 +5,7 @@ exports.connect = (done) => {
 }
 
 var connectionPool = null;
-/*
-function getConnection() {
-    if(!connectionPool){
-        connectionPool = mysql.createPool({
-            conectionLimit:10,
-            host:"mysql-rice.alwaysdata.net", // process.env.MYSQL_HOST
-            user:"rice", // process.env.MYSQL_USER
-            password:"Communism42_", // process.env.MYSQL_PASSWORD
-            database:"rice_projet_awi" // process.env.MYSQL_DATABASE
-        })
-    }
-    return connectionPool;
-}
-*/
+
 function getConnection() {
     if(!connectionPool){
         connectionPool = mysql.createPool({
