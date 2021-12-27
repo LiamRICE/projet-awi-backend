@@ -22,7 +22,9 @@ async function create(techdoc){
 
 async function toTechdocList(data){
     console.log(data);
-    return data;
+    let parsedData = json.parse(data);
+    console.log(parsedData);
+    return parsedData;
 }
 
 module.exports = {
