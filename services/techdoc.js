@@ -32,7 +32,6 @@ function toTechdocList(data){
         "nbserved":data[0].nbserved,
         "steps":[]
     };
-    /*
     let listOfStepIds = [];
     for(let instance in data){
         if(instance.stepid in listOfStepIds){
@@ -48,6 +47,7 @@ function toTechdocList(data){
             listOfStepIds.append(instance.stepid);
         }
     }
+    /*
     for(let instance in data){
         for(step in header.steps){
             if(instance.stepid == step.stepid){
