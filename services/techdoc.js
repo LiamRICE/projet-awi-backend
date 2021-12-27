@@ -24,7 +24,7 @@ async function create(techdoc){
 
 function toTechdocList(data){
     console.log(data);
-    let parsedData = JSON.parse();
+    let parsedData = JSON.parse(data);
     console.log(parsedData);
     return data;
 }
