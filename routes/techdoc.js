@@ -27,10 +27,40 @@ router.get('/get/:techdocId', (req, res, next) => {
         })
 })
 
-// requires input form with input names : name, description, author, responsable, nbserved
-router.post('/post', function (req, res){
+// requires input form with input names : id, name, description, author, responsable, nbserved
+router.post('/post/header', function (req, res){
     let techdoc = req.body;
-    database.query(`INSERT INTO technicaldoc VALUES ("${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved});`, function(err, result){
+    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved});`, function(err, result){
+        if(err) throw err;
+        console.log("Insert complete.");
+    });
+    res.status(200).send('Techdoc header has been added successfully.');
+});
+
+// requires input form with input names : id, name, description, author, responsable, nbserved
+router.post('/post/step', function (req, res){
+    let step = req.body;
+    database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.description}",${step.time});`, function(err, result){
+        if(err) throw err;
+        console.log("Insert complete.");
+    });
+    res.status(200).send('Techdoc step has been added successfully.');
+});
+
+// requires input form with input names : id, name, description, author, responsable, nbserved
+router.post('/post/stepinheader', function (req, res){
+    let sih = req.body;
+    database.query(`INSERT INTO stepsindoc VALUES (${sih.docid},${sih.stepid});`, function(err, result){
+        if(err) throw err;
+        console.log("Insert complete.");
+    });
+    res.status(200).send('Techdoc step has been added successfully to header.');
+});
+
+// requires input form with input names : id, name, description, author, responsable, nbserved
+router.post('/post/ingredientinstep', function (req, res){
+    let sui = req.body;
+    database.query(`INSERT INTO stepusesingredient VALUES (${sui.stepid},${sui.ingredientcode},${sui.quantity});`, function(err, result){
         if(err) throw err;
         console.log("Insert complete.");
     });
