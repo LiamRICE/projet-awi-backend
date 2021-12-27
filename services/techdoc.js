@@ -21,7 +21,7 @@ async function create(techdoc){
 }
 
 async function toTechdocList(data){
-    print(data);
+    console.log(data);
     return data;
 }
 
