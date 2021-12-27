@@ -37,6 +37,7 @@ function toTechdocList(data){
         if(instance.stepid in listOfStepIds){
             // do nothing
         }else {
+            /*
             header.steps.append({
                 "stepid": instance.stepid,
                 "title": instance.title,
@@ -44,6 +45,7 @@ function toTechdocList(data){
                 "time": instance.time,
                 "ingredients": []
             });
+             */
             listOfStepIds.append(instance.stepid);
         }
     }
