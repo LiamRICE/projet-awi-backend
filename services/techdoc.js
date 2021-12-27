@@ -23,7 +23,6 @@ async function create(techdoc){
 }
 
 function toTechdocList(data){
-    /*
     let header = {
         "id":data[0].id,
         "name":data[0].name,
@@ -33,6 +32,7 @@ function toTechdocList(data){
         "nbserved":data[0].nbserved,
         "steps":[]
     };
+    /*
     let listOfStepIds = [];
     for(let instance in data){
         if(instance.stepid in listOfStepIds){
@@ -63,7 +63,7 @@ function toTechdocList(data){
         }
     }
      */
-    return data;
+    return header;
 }
 
 module.exports = {
