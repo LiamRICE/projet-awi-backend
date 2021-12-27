@@ -22,7 +22,7 @@ async function create(techdoc){
     return {message};
 }
 
-function toTechdocList(data){
+function toTechdoc(data){
     let header = {
         "id":data[0].id,
         "name":data[0].name,
@@ -64,7 +64,30 @@ function toTechdocList(data){
     return header;
 }
 
+function toTechdocList(data){
+    listOfTechDocIds = []
+    for(let i=0; i<data.length; i++){
+        if(data[i].id in listOfTechDocIds){
+            // do nothing
+        }else{
+            listOfTechDocIds.push(data[i].id);
+        }
+    }
+    listOfTechdocs = []
+    for(let id in listOfTechDocIds){
+        list = []
+        for(let i=0; i<data.length; i++){
+            if(id == data[i].id){
+                list.push(data[i]);
+            }
+        }
+        listOfTechdocs.push(toTechdoc(list));
+    }
+    return listOfTechdocs;
+}
+
 module.exports = {
     create,
+    toTechdoc,
     toTechdocList,
 }
