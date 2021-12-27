@@ -12,7 +12,8 @@ router.get('/get/all', (req, res, next) => {
         FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
         WHERE stepsindoc.docid = technicaldoc.id AND stepsindoc.stepid = step.id AND stepusesingredient.stepid = step.id AND stepusesingredient.ingredientcode = ingredients.code;`
         , (result)=>{
-            res.status(200).send(techdocService.toTechdocList(result));
+            res.status(200).send(result[0]);
+            //res.status(200).send(techdocService.toTechdocList(result));
         })
 })
 
@@ -21,7 +22,7 @@ router.get('/get/:techdocId', (req, res, next) => {
     database.query(
         `SELECT * 
         FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
-        WHERE stepsindoc.docname = technicaldoc.name AND stepsindoc.steptitle = step.title AND stepusesingredient.steptitle = step.title AND stepusesingredient.ingredientcode = ingredients.code AND technicaldoc.id=${req.params.techdocId};`
+        WHERE stepsindoc.docid = technicaldoc.id AND stepsindoc.stepid = step.id AND stepusesingredient.stepid = step.id AND stepusesingredient.ingredientcode = ingredients.code AND technicaldoc.id=${req.params.techdocId};`
         , (result)=>{
             res.status(200).send(result);
         })
