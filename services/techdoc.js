@@ -1,3 +1,5 @@
+
+
 async function create(techdoc){
     const result = await db.query(
         `INSERT INTO technicaldoc 
@@ -20,11 +22,11 @@ async function create(techdoc){
     return {message};
 }
 
-async function toTechdocList(data){
+function toTechdocList(data){
     console.log(data);
-    let parsedData = json.parse(data);
+    let parsedData = JSON.parse();
     console.log(parsedData);
-    return parsedData;
+    return data;
 }
 
 module.exports = {
