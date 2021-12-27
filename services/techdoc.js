@@ -20,7 +20,12 @@ async function create(techdoc){
     return {message};
 }
 
+async function toTechdocList(data){
+    print(data);
+    return data;
+}
+
 module.exports = {
-    getMultiple,
-    create
+    create,
+    toTechdocList
 }
