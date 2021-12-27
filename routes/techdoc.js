@@ -23,7 +23,6 @@ router.get('/get/:techdocId', (req, res, next) => {
         FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
         WHERE stepsindoc.docid = technicaldoc.id AND stepsindoc.stepid = step.id AND stepusesingredient.stepid = step.id AND stepusesingredient.ingredientcode = ingredients.code AND technicaldoc.id=${req.params.techdocId};`
         , (result)=>{
-            res.status(200).send(result);
             //res.status(200).send(techdocService.toTechdocList(result));
         })
 })

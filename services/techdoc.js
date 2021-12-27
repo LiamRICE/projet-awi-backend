@@ -32,6 +32,7 @@ function toTechdocList(data){
         "nbserved":data[0].nbserved,
         "steps":[]
     };
+    /*
     let listOfStepIds = [];
     for(let instance in data){
         if(instance.stepid in listOfStepIds){
@@ -61,6 +62,7 @@ function toTechdocList(data){
             }
         }
     }
+     */
     return header;
 }
 
