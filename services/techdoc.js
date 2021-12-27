@@ -33,30 +33,30 @@ function toTechdocList(data){
         "steps":[]
     };
     let listOfStepIds = [];
-    for(let instance in data){
-        if(instance.stepid in listOfStepIds){
+    for(let i=0; i<data.length; i++){
+        if(data[i].stepid in listOfStepIds){
             // do nothing
         }else {
             header.steps.push({
-                "stepid": instance.stepid,
-                "title": instance.title,
-                "description": instance.description,
-                "time": instance.time,
+                "stepid": data[i].stepid,
+                "title": data[i].title,
+                "description": data[i].description,
+                "time": data[i].time,
                 "ingredients": []
             });
-            listOfStepIds.push(instance.stepid);
+            listOfStepIds.push(data[i].stepid);
         }
     }
-    for(let instance in data){
-        for(step in header.steps){
-            if(instance.stepid == step.stepid){
-                step.ingredients.push({
-                    "code":instance.code,
-                    "libelle":instance.libelle,
-                    "quantity":instance.quantity,
-                    "unit":instance.unit,
-                    "unitprice":instance.unitprice,
-                    "allergen":instance.allergene,
+    for(let i=0; i<header.steps.length; i++){
+        for(let j=0; j<data.length; j++){
+            if(data[j].stepid == header.steps[i].stepid){
+                header.steps[i].ingredients.push({
+                    "code":data[j].code,
+                    "libelle":data[j].libelle,
+                    "quantity":data[j].quantity,
+                    "unit":data[j].unit,
+                    "unitprice":data[j].unitprice,
+                    "allergen":data[j].allergene,
                 })
             }
         }
