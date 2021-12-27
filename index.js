@@ -4,7 +4,8 @@ const cors = require('cors');
 const path = require('path');
 
 var corsOptions = {
-    origin: process.env.ORIGIN || "",
+    origin: [process.env.ORIGIN, process.env.ORIGIN2, ""],
+    default: process.env.ORIGIN,
     optionsSuccessStatus: 204
 };
 
