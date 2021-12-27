@@ -47,11 +47,10 @@ function toTechdocList(data){
             listOfStepIds.push(instance.stepid);
         }
     }
-    /*
     for(let instance in data){
         for(step in header.steps){
             if(instance.stepid == step.stepid){
-                step.ingredients.append({
+                step.ingredients.push({
                     "code":instance.code,
                     "libelle":instance.libelle,
                     "quantity":instance.quantity,
@@ -62,7 +61,6 @@ function toTechdocList(data){
             }
         }
     }
-     */
     return header;
 }
 
