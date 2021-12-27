@@ -37,16 +37,14 @@ function toTechdocList(data){
         if(instance.stepid in listOfStepIds){
             // do nothing
         }else {
-            /*
-            header.steps.append({
+            header.steps.push({
                 "stepid": instance.stepid,
                 "title": instance.title,
                 "description": instance.description,
                 "time": instance.time,
                 "ingredients": []
             });
-             */
-            listOfStepIds.append(instance.stepid);
+            listOfStepIds.push(instance.stepid);
         }
     }
     /*
