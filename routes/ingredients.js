@@ -32,7 +32,7 @@ router.post('/post', function (req, res){
 router.put('/put/:ingredientId', function (req, res){
     let ingredient = req.params.ingredientId;
     let update = req.body;
-    database.query(`UPDATE ingredients SET libelle="${update.libelle}"unit=,"${update.unit}",unitprice=${update.unitprice},stocks=${update.stocks},stockvalue=${update.stockvalue},allergene=${update.allergene} WHERE code=${ingredient};`, function(result){
+    database.query(`UPDATE ingredients SET libelle="${update.libelle}", unit="${update.unit}",unitprice=${update.unitprice},stocks=${update.stocks},stockvalue=${update.stockvalue},allergene=${update.allergene} WHERE code=${ingredient};`, function(result){
         console.log("Update complete.");
         res.status(200).send('Ingredient has been updated successfully.');
     });
