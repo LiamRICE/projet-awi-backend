@@ -19,8 +19,8 @@ router.post('/post', function (req, res){
     database.query(`INSERT INTO ingredients VALUES (${ingredient.code},"${ingredient.libelle}","${ingredient.unit}",${ingredient.unitprice},${ingredient.stocks},${ingredient.stockvalue},${ingredient.allergene});`, function(err, result){
         if(err) throw err;
         console.log("Insert complete.");
+        res.status(200).send('Ingredient has been added successfully.');
     });
-    res.status(200).send('Ingredient has been added successfully.');
 });
 
 // requires input names code, libelle, unit, unitprice, stocks, stockvalue and allergene - make sure stocks are up to date (ie. current + new)
@@ -30,8 +30,8 @@ router.put('/put/:ingredientId', function (req, res){
     database.query(`UPDATE ingredients SET libelle="${update.libelle}"unit=,"${update.unit}",unitprice=${update.unitprice},stocks=${update.stocks},stockvalue=${update.stockvalue},allergene=${update.allergene} WHERE code=${ingredient};`, function(err, result){
         if(err) throw err;
         console.log("Update complete.");
+        res.status(200).send('Ingredient has been updated successfully.');
     });
-    res.status(200).send('Ingredient has been updated successfully.');
 });
 
 // requires input names code, libelle, unit, unitprice, stocks, stockvalue and allergene - make sure stocks are up to date (ie. current + new)
@@ -43,8 +43,8 @@ router.put('/addstock/:ingredientId', function (req, res){
         database.query(`UPDATE ingredients SET stocks=${previous.stocks + toadd.stocks},stockvalue=${(previous.stocks + toadd.stocks)*previous.unitprice} WHERE code=${ingredient};`, function(err, result){
             if(err) throw err;
             console.log("Update complete.");
+            res.status(200).send('Ingredient has been updated successfully.');
         });
-        res.status(200).send('Ingredient has been updated successfully.');
     });
 
 });
