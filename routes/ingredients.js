@@ -17,9 +17,12 @@ router.get('/get/:ingredientId', (req, res, next) => {
 router.post('/post', function (req, res){
     let ingredient = req.body;
     database.query(`INSERT INTO ingredients VALUES (${ingredient.code},"${ingredient.libelle}","${ingredient.unit}",${ingredient.unitprice},${ingredient.stocks},${ingredient.stockvalue},${ingredient.allergene});`, function(err, result){
-        if(err) throw err;
-        console.log("Insert complete.");
-        res.status(200).send('Ingredient has been added successfully.');
+        if(err) {
+            throw err;
+        } else {
+            console.log("Insert complete.");
+            res.status(200).send('Ingredient has been added successfully.');
+        }
     });
 });
 
