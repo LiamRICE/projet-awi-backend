@@ -13,6 +13,12 @@ router.get('/get/:ingredientId', (req, res, next) => {
     })
 })
 
+router.delete('/delete/:ingredientId', (req, res, next) => {
+    database.query(`DELETE FROM ingredients WHERE code=${req.params.ingredientId};`, (result)=>{
+        res.status(200).send(result);
+    })
+})
+
 // requires input names code, libelle, unit, unitprice, stocks, stockvalue and allergene - make sure stocks are up to date (ie. current + new)
 router.post('/post', function (req, res){
     let ingredient = req.body;
