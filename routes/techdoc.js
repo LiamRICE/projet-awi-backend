@@ -37,7 +37,7 @@ router.post('/post/header', function (req, res){
     res.status(200).send('Techdoc header has been added successfully.');
 });
 
-// requires input form with input names : id, name, description, author, responsable, nbserved
+// requires input form with input names : id, title, description, time
 router.post('/post/step', function (req, res){
     let step = req.body;
     database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.description}",${step.time});`, function(err, result){
@@ -47,7 +47,7 @@ router.post('/post/step', function (req, res){
     res.status(200).send('Techdoc step has been added successfully.');
 });
 
-// requires input form with input names : id, name, description, author, responsable, nbserved
+// requires input form with input names : docid, stepid
 router.post('/post/stepinheader', function (req, res){
     let sih = req.body;
     database.query(`INSERT INTO stepsindoc VALUES (${sih.docid},${sih.stepid});`, function(err, result){
@@ -57,7 +57,7 @@ router.post('/post/stepinheader', function (req, res){
     res.status(200).send('Techdoc step has been added successfully to header.');
 });
 
-// requires input form with input names : id, name, description, author, responsable, nbserved
+// requires input form with input names : stepid, ingredientcode, quantity
 router.post('/post/ingredientinstep', function (req, res){
     let sui = req.body;
     database.query(`INSERT INTO stepusesingredient VALUES (${sui.stepid},${sui.ingredientcode},${sui.quantity});`, function(err, result){
