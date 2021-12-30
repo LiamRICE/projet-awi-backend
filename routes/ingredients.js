@@ -42,14 +42,10 @@ router.put('/put/:ingredientId', function (req, res){
 router.put('/addstock/:ingredientId', function (req, res){
     let ingredient = req.params.ingredientId;
     let toadd = req.body;
-    database.query(`SELECT * FROM ingredients WHERE code=${ingredient};`, (result)=>{
-        let previous = result;
-        database.query(`UPDATE ingredients SET stocks=${previous.stocks + toadd.stocks},stockvalue=${(previous.stocks + toadd.stocks)*previous.unitprice} WHERE code=${ingredient};`, function(result){
-            console.log("Update complete.");
-            res.status(200).send('Ingredient has been updated successfully.');
-        });
+    database.query(`UPDATE ingredients SET stocks=${toadd.stocks},stockvalue=${toadd.stocks*toadd.unitprice} WHERE code=${ingredient};`, function(result){
+        console.log("Update complete.");
+        res.status(200).send('Ingredient has been updated successfully.');
     });
-
 });
 
 module.exports = router;
