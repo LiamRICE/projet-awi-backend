@@ -8,12 +8,14 @@ router.use(bodyParser.json());
 
 router.get('/get/all', (req, res, next) => {
     database.query(
-        `SELECT * 
-            FROM 
-            (SELECT * FROM technicaldoc LEFT OUTER JOIN stepsindoc ON stepsindoc.docid = technicaldoc.id) AS header, 
-            (SELECT * FROM step LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = step.id) AS body, 
-            (SELECT * FROM stepusesingredient INNER JOIN ingredients ON stepusesingredient.ingredientcode = ingredients.code) AS detail
-            WHERE header.stepid = body.stepid AND body.ingredientcode = detail.code;`
+        `SELECT * FROM 
+        (SELECT * FROM technicaldoc LEFT OUTER JOIN stepsindoc ON stepsindoc.docid = technicaldoc.id) AS header, 
+        (SELECT * FROM
+            (SELECT * FROM step LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = step.id) AS body 
+                LEFT OUTER JOIN 
+            (SELECT * FROM ingredients) AS detail
+        ON body.ingredientcode = detail.code) AS bottom
+        WHERE header.stepid = bottom.id;`
         , (result)=>{
             res.status(200).send(techdocService.toTechdocList(result));
         })
