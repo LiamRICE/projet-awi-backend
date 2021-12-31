@@ -11,12 +11,12 @@ router.get('/get/all', (req, res, next) => {
         `SELECT * FROM 
 (SELECT * FROM technicaldoc LEFT OUTER JOIN stepsindoc ON stepsindoc.docid = technicaldoc.id) AS header 
 LEFT OUTER JOIN 
-(SELECT * FROM
+(SELECT id AS stepid, title, description, time, quantity, code, libelle, unit, unitprice, stocks, stockvalue, allergene FROM
 (SELECT * FROM step LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = step.id) AS body 
 LEFT OUTER JOIN 
 (SELECT * FROM ingredients) AS detail
 ON body.ingredientcode = detail.code) AS bottom
-ON header.stepid = bottom.id;`
+ON header.stepid = bottom.stepid;`
         , (result)=>{
             res.status(200).send(techdocService.toTechdocList(result));
         })
