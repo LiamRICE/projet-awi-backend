@@ -9,8 +9,7 @@ router.use(bodyParser.json());
 router.get('/get/all', (req, res, next) => {
     database.query(
         `SELECT * 
-        FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
-        WHERE stepsindoc.docid = technicaldoc.id AND stepsindoc.stepid = step.id AND stepusesingredient.stepid = step.id AND stepusesingredient.ingredientcode = ingredients.code;`
+        FROM (((technicaldoc INNER JOIN stepsindoc ON stepsindoc.docid = technicaldoc.id) INNER JOIN step ON stepsindoc.stepid = step.id) LEFT OUTER JOIN stepusesingredient ON stepusesingredient.ingredientcode = step.id) INNER JOIN ingredients on stepusesingredient.ingredientcode = ingredient.code;`
         , (result)=>{
             res.status(200).send(techdocService.toTechdocList(result));
         })
