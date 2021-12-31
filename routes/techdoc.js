@@ -11,12 +11,12 @@ router.get('/get/all', (req, res, next) => {
         `SELECT * FROM 
 (SELECT * FROM technicaldoc LEFT OUTER JOIN stepsindoc ON stepsindoc.docid = technicaldoc.id) AS header 
 LEFT OUTER JOIN 
-(SELECT id AS stepid, title, description, time, quantity, code, libelle, unit, unitprice, stocks, stockvalue, allergene FROM
+(SELECT id AS bstepid, title, description, time, quantity, code, libelle, unit, unitprice, stocks, stockvalue, allergene FROM
 (SELECT * FROM step LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = step.id) AS body 
 LEFT OUTER JOIN 
 (SELECT * FROM ingredients) AS detail
 ON body.ingredientcode = detail.code) AS bottom
-ON header.stepid = bottom.stepid;`
+ON header.stepid = bottom.bstepid;`
         , (result)=>{
             res.status(200).send(techdocService.toTechdocList(result));
         })
@@ -25,9 +25,17 @@ ON header.stepid = bottom.stepid;`
 router.get('/get/:techdocId', (req, res, next) => {
     // doesn't yet return specific meal
     database.query(
-        `SELECT * 
-        FROM technicaldoc, stepsindoc, step, stepusesingredient, ingredients 
-        WHERE stepsindoc.docid = technicaldoc.id AND stepsindoc.stepid = step.id AND stepusesingredient.stepid = step.id AND stepusesingredient.ingredientcode = ingredients.code AND technicaldoc.id=${req.params.techdocId};`
+        `SELECT * FROM (
+SELECT * FROM 
+(SELECT * FROM technicaldoc LEFT OUTER JOIN stepsindoc ON stepsindoc.docid = technicaldoc.id) AS header 
+LEFT OUTER JOIN 
+(SELECT id AS bstepid, title, description, time, quantity, code, libelle, unit, unitprice, stocks, stockvalue, allergene FROM
+(SELECT * FROM step LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = step.id) AS body 
+LEFT OUTER JOIN 
+(SELECT * FROM ingredients) AS detail
+ON body.ingredientcode = detail.code) AS bottom
+ON header.stepid = bottom.bstepid) AS full
+WHERE full.id=${req.params.techdocId};`
         , (result)=>{
             res.status(200).send(techdocService.toTechdoc(result));
         })
