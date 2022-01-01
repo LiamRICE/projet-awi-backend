@@ -33,31 +33,37 @@ function toTechdoc(data){
         "steps":[]
     };
     let listOfStepIds = [];
-    for(let i=0; i<data.length; i++){
-        if(data[i].stepid in listOfStepIds){
-            // do nothing
-        }else {
-            header.steps.push({
-                "stepid": data[i].stepid,
-                "title": data[i].title,
-                "description": data[i].description,
-                "time": data[i].time,
-                "ingredients": []
-            });
-            listOfStepIds.push(data[i].stepid);
+    for(let i=0; i<data.length; i++) {
+        if (data[i].stepid != null) {
+            if (data[i].stepid in listOfStepIds) {
+                // do nothing
+            } else {
+                header.steps.push({
+                    "stepid": data[i].stepid,
+                    "title": data[i].title,
+                    "description": data[i].description,
+                    "time": data[i].time,
+                    "ingredients": []
+                });
+                listOfStepIds.push(data[i].stepid);
+            }
         }
     }
     for(let i=0; i<header.steps.length; i++){
         for(let j=0; j<data.length; j++){
-            if(data[j].stepid == header.steps[i].stepid){
-                header.steps[i].ingredients.push({
-                    "code":data[j].code,
-                    "libelle":data[j].libelle,
-                    "quantity":data[j].quantity,
-                    "unit":data[j].unit,
-                    "unitprice":data[j].unitprice,
-                    "allergen":data[j].allergene,
-                })
+            if(data[j].stepid != null) {
+                if (data[j].stepid == header.steps[i].stepid) {
+                    if(data[j].code != null) {
+                        header.steps[i].ingredients.push({
+                            "code": data[j].code,
+                            "libelle": data[j].libelle,
+                            "quantity": data[j].quantity,
+                            "unit": data[j].unit,
+                            "unitprice": data[j].unitprice,
+                            "allergen": data[j].allergene,
+                        })
+                    }
+                }
             }
         }
     }
