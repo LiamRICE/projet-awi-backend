@@ -73,9 +73,7 @@ function toTechdoc(data){
 function toTechdocList(data){
     let listOfTechDocIds = []
     for(let i=0; i<data.length; i++){
-        if(data[i].id in listOfTechDocIds){
-            console.log(data[i].id);
-        }else{
+        if(!listOfTechDocIds.includes(data[i].id)){
             listOfTechDocIds.push(data[i].id);
         }
     }
