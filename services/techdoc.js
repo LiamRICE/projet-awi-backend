@@ -24,13 +24,13 @@ async function create(techdoc){
 
 function toTechdoc(data){
     let header = {
-        "id":data[0].id,
-        "name":data[0].name,
-        "header":data[0].header,
-        "author":data[0].author,
-        "responsable":data[0].responsable,
-        "nbserved":data[0].nbserved,
-        "steps":[]
+        id:data[0].id,
+        name:data[0].name,
+        header:data[0].header,
+        author:data[0].author,
+        responsable:data[0].responsable,
+        nbserved:data[0].nbserved,
+        steps:[]
     };
     let listOfStepIds = [];
     for(let i=0; i<data.length; i++) {
@@ -39,11 +39,11 @@ function toTechdoc(data){
                 // do nothing
             } else {
                 header.steps.push({
-                    "stepid": data[i].stepid,
-                    "title": data[i].title,
-                    "description": data[i].description,
-                    "time": data[i].time,
-                    "ingredients": []
+                    stepid: data[i].stepid,
+                    title: data[i].title,
+                    description: data[i].description,
+                    time: data[i].time,
+                    ingredients: []
                 });
                 listOfStepIds.push(data[i].stepid);
             }
@@ -55,12 +55,12 @@ function toTechdoc(data){
                 if (data[j].stepid == header.steps[i].stepid) {
                     if(data[j].code != null) {
                         header.steps[i].ingredients.push({
-                            "code": data[j].code,
-                            "libelle": data[j].libelle,
-                            "quantity": data[j].quantity,
-                            "unit": data[j].unit,
-                            "unitprice": data[j].unitprice,
-                            "allergen": data[j].allergene,
+                            code: data[j].code,
+                            libelle: data[j].libelle,
+                            quantity: data[j].quantity,
+                            unit: data[j].unit,
+                            unitprice: data[j].unitprice,
+                            allergen: data[j].allergene,
                         })
                     }
                 }
@@ -87,7 +87,6 @@ function toTechdocList(data){
                 list.push(data[i]);
             }
         }
-        console.log(list);
         listOfTechdocs.push(toTechdoc(list));
     }
     return listOfTechdocs;
