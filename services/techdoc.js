@@ -80,12 +80,11 @@ function toTechdocList(data){
         }
     }
     let listOfTechdocs = []
-    for(let i=0; i<listOfTechdocs.length; i++) {
-        let id = listOfTechdocs[i]
+    for(let id in listOfTechDocIds){
         let list = []
-        for (let j = 0; j < data.length; j++) {
-            if (id == data[j].id) {
-                list.push(data[j]);
+        for(let i=0; i<data.length; i++){
+            if(id == data[i].id){
+                list.push(data[i]);
             }
         }
         listOfTechdocs.push(toTechdoc(list));
