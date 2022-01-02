@@ -81,7 +81,7 @@ function toTechdocList(data){
     }
     console.log(listOfTechDocIds);
     let listOfTechdocs = []
-    listOfTechdocs.forEach((id) => {
+    listOfTechDocIds.forEach((id) => {
         let list = []
         for(let i=0; i<data.length; i++){
             if(id == data[i].id){
