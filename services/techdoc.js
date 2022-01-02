@@ -3,11 +3,11 @@
 async function create(techdoc){
     const result = await db.query(
         `INSERT INTO technicaldoc 
-    (name, header, author, responsable, nbserved) 
+    (id, name, header, author, responsable, nbserved) 
     VALUES 
     (?, ?, ?, ?, ?)`,
         [
-            techdoc.name, techdoc.header,
+            techdoc.id, techdoc.name, techdoc.header,
             techdoc.author, techdoc.responsable,
             techdoc.nbserved
         ]
@@ -80,10 +80,11 @@ function toTechdocList(data){
         }
     }
     let listOfTechdocs = []
-    for(let id in listOfTechDocIds){
+    for(let i=0; i<listOfTechdocs.length; i++) {
+        let id = listOfTechdocs[i]
         let list = []
-        for(let i=0; i<data.length; i++){
-            if(id == data[i].id){
+        for (let i = 0; i < data.length; i++) {
+            if (id == data[i].id) {
                 list.push(data[i]);
             }
         }
