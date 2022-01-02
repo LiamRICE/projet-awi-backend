@@ -81,7 +81,7 @@ function toTechdocList(data){
     }
     console.log(listOfTechDocIds);
     let listOfTechdocs = []
-    for(let id in listOfTechDocIds){
+    listOfTechdocs.forEach((id) => {
         let list = []
         for(let i=0; i<data.length; i++){
             if(id == data[i].id){
@@ -89,7 +89,7 @@ function toTechdocList(data){
             }
         }
         listOfTechdocs.push(toTechdoc(list));
-    }
+    });
     return listOfTechdocs;
 }
 
