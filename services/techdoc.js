@@ -72,11 +72,11 @@ function toTechdoc(data){
 
 function toTechdocList(data){
     let listOfTechDocIds = []
-    for(let i=0; i<data.length; i++){
-        if(data[i].id in listOfTechDocIds){
+    for(let dataLine in data){
+        if(dataLine.id in listOfTechDocIds){
             // do nothing
         }else{
-            listOfTechDocIds.push(data[i].id);
+            listOfTechDocIds.push(dataLine.id);
         }
     }
     let listOfTechdocs = []
