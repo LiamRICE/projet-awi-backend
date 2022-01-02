@@ -79,6 +79,7 @@ function toTechdocList(data){
             listOfTechDocIds.push(data[i].id);
         }
     }
+    console.log(listOfTechDocIds);
     let listOfTechdocs = []
     for(let id in listOfTechDocIds){
         let list = []
