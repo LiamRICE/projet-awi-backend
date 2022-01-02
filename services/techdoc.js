@@ -71,7 +71,7 @@ function toTechdoc(data){
 }
 
 function toTechdocList(data){
-    listOfTechDocIds = []
+    let listOfTechDocIds = []
     for(let i=0; i<data.length; i++){
         if(data[i].id in listOfTechDocIds){
             // do nothing
@@ -79,7 +79,7 @@ function toTechdocList(data){
             listOfTechDocIds.push(data[i].id);
         }
     }
-    listOfTechdocs = []
+    let listOfTechdocs = []
     for(let id in listOfTechDocIds){
         let list = []
         for(let i=0; i<data.length; i++){
@@ -87,6 +87,7 @@ function toTechdocList(data){
                 list.push(data[i]);
             }
         }
+        console.log(list);
         listOfTechdocs.push(toTechdoc(list));
     }
     return listOfTechdocs;

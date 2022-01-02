@@ -18,8 +18,7 @@ LEFT OUTER JOIN
 ON body.ingredientcode = detail.code) AS bottom
 ON header.stepid = bottom.bstepid;`
         , (result)=>{
-            res.status(200).send(result);
-            //res.status(200).send(techdocService.toTechdocList(result));
+            res.status(200).send(techdocService.toTechdocList(result));
         })
 })
 
