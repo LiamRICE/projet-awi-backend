@@ -35,7 +35,7 @@ function toTechdoc(data){
     let listOfStepIds = [];
     for(let i=0; i<data.length; i++) {
         if (data[i].stepid != null) {
-            if (data[i].stepid in listOfStepIds) {
+            if (listOfStepIds.contains(data[i].stepid)) {
                 // do nothing
             } else {
                 header.steps.push({
@@ -73,7 +73,7 @@ function toTechdoc(data){
 function toTechdocList(data){
     let listOfTechDocIds = []
     for(let i=0; i<data.length; i++){
-        if(data[i].id in listOfTechDocIds){
+        if(listOfTechDocIds.includes(data[i].id)){
             // do nothing
         }else{
             listOfTechDocIds.push(data[i].id);
