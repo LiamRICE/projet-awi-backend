@@ -74,7 +74,7 @@ function toTechdocList(data){
     let listOfTechDocIds = []
     for(let i=0; i<data.length; i++){
         if(data[i].id in listOfTechDocIds){
-            // do nothing
+            console.log(data[i].id);
         }else{
             listOfTechDocIds.push(data[i].id);
         }
