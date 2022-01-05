@@ -6,7 +6,7 @@ router.get('/get', (req, res, next) => {
     database.query(
         `SELECT fluides, personnel FROM couts;`
         , (result)=>{
-            res.status(200).send(result);
+            res.status(200).send(result[0]);
         })
 })
 
