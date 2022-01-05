@@ -10,4 +10,11 @@ router.get('/get', (req, res, next) => {
         })
 })
 
+router.put('/set', (req, res, next) => {
+    let body = req.body;
+    database.query(`UPDATE couts SET fluides=${body.fluides}, personnel=${body.personnel} WHERE id=0;`, function(result){
+        res.status(200).send('Costs have been updated successfully.');
+    });
+})
+
 module.exports = router;
