@@ -35,7 +35,7 @@ LEFT OUTER JOIN
 (SELECT * FROM ingredients) AS detail
 ON body.ingredientcode = detail.code) AS bottom
 ON header.stepid = bottom.bstepid) AS full
-WHERE full.id=${req.params.techdocId};`
+WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
         , (result)=>{
             res.status(200).send(techdocService.toTechdoc(result));
         })
