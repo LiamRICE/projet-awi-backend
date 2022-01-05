@@ -17,6 +17,7 @@ function toTechdoc(data){
                     title: data[i].title,
                     description: data[i].description,
                     time: data[i].time,
+                    rank: data[i].rank,
                     ingredients: []
                 });
                 listOfStepIds.push(data[i].stepid);
