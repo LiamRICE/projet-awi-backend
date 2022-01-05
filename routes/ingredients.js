@@ -38,7 +38,7 @@ router.put('/put/:ingredientId', function (req, res){
     });
 });
 
-// requires input names code, libelle, unit, unitprice, stocks, stockvalue and allergene - make sure stocks are up to date (ie. current + new)
+// requires input names code, unitprice, stocks - make sure stocks are up to date (ie. current + new)
 router.put('/addstock/:ingredientId', function (req, res){
     let ingredient = req.params.ingredientId;
     let toadd = req.body;
