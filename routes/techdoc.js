@@ -62,7 +62,7 @@ router.post('/post/step', function (req, res){
 // requires input form with input names : docid, stepid
 router.post('/post/stepinheader', function (req, res){
     let sih = req.body;
-    database.query(`INSERT INTO stepsindoc VALUES (${sih.docid},${sih.stepid});`, function(result){
+    database.query(`INSERT INTO stepsindoc VALUES (${sih.docid},${sih.stepid},${sih.rank});`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc step has been added successfully to header.');
     });
