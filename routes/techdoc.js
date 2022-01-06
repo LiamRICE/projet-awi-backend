@@ -79,8 +79,7 @@ router.post('/post/ingredientinstep', function (req, res){
 
 router.put('/put/header', function (req, res){
     let techdoc = req.body;
-    database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.description}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};
-    INSERT INTO technicaldoc VALUES (,"","","","",, 0, 0);`, function(result){
+    database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.description}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc header has been updated successfully.');
     });
