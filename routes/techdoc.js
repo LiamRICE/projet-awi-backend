@@ -77,7 +77,7 @@ router.post('/post/ingredientinstep', function (req, res){
     });
 });
 
-router.post('/put/header', function (req, res){
+router.put('/put/header', function (req, res){
     let techdoc = req.body;
     database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.description}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};
     INSERT INTO technicaldoc VALUES (,"","","","",, 0, 0);`, function(result){
@@ -87,7 +87,7 @@ router.post('/put/header', function (req, res){
 });
 
 // requires input form with input names : id, title, description, time
-router.post('/put/step', function (req, res){
+router.put('/put/step', function (req, res){
     let step = req.body;
     // TODO - replace queries
     database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.description}",${step.time});`, function(result){
@@ -97,7 +97,7 @@ router.post('/put/step', function (req, res){
 });
 
 // requires input form with input names : docid, stepid
-router.post('/put/stepinheader', function (req, res){
+router.put('/put/stepinheader', function (req, res){
     let sih = req.body;
     // TODO - replace queries
     database.query(`INSERT INTO stepsindoc VALUES (${sih.docid},${sih.stepid},${sih.rank});`, function(result){
@@ -107,7 +107,7 @@ router.post('/put/stepinheader', function (req, res){
 });
 
 // requires input form with input names : stepid, ingredientcode, quantity
-router.post('/put/ingredientinstep', function (req, res){
+router.put('/put/ingredientinstep', function (req, res){
     let sui = req.body;
     // TODO - replace queries
     database.query(`INSERT INTO stepusesingredient VALUES (${sui.stepid},${sui.ingredientcode},${sui.quantity});`, function(result){
