@@ -44,7 +44,7 @@ WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
 // requires input form with input names : id, name, description, author, responsable, nbserved
 router.post('/post/header', function (req, res){
     let techdoc = req.body;
-    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved});`, function(result){
+    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved}, 0, 0);`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc header has been added successfully.');
     });
@@ -71,6 +71,45 @@ router.post('/post/stepinheader', function (req, res){
 // requires input form with input names : stepid, ingredientcode, quantity
 router.post('/post/ingredientinstep', function (req, res){
     let sui = req.body;
+    database.query(`INSERT INTO stepusesingredient VALUES (${sui.stepid},${sui.ingredientcode},${sui.quantity});`, function(result){
+        console.log("Insert complete.");
+        res.status(200).send('Techdoc header has been added successfully.');
+    });
+});
+
+router.post('/put/header', function (req, res){
+    let techdoc = req.body;
+    database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.description}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};
+    INSERT INTO technicaldoc VALUES (,"","","","",, 0, 0);`, function(result){
+        console.log("Insert complete.");
+        res.status(200).send('Techdoc header has been added successfully.');
+    });
+});
+
+// requires input form with input names : id, title, description, time
+router.post('/put/step', function (req, res){
+    let step = req.body;
+    // TODO - replace queries
+    database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.description}",${step.time});`, function(result){
+        console.log("Insert complete.");
+        res.status(200).send('Techdoc step has been added successfully.');
+    });
+});
+
+// requires input form with input names : docid, stepid
+router.post('/put/stepinheader', function (req, res){
+    let sih = req.body;
+    // TODO - replace queries
+    database.query(`INSERT INTO stepsindoc VALUES (${sih.docid},${sih.stepid},${sih.rank});`, function(result){
+        console.log("Insert complete.");
+        res.status(200).send('Techdoc step has been added successfully to header.');
+    });
+});
+
+// requires input form with input names : stepid, ingredientcode, quantity
+router.post('/put/ingredientinstep', function (req, res){
+    let sui = req.body;
+    // TODO - replace queries
     database.query(`INSERT INTO stepusesingredient VALUES (${sui.stepid},${sui.ingredientcode},${sui.quantity});`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc header has been added successfully.');
