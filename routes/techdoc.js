@@ -41,16 +41,16 @@ WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
         })
 })
 
-// requires input form with input names : id, name, description, author, responsable, nbserved
+// requires input form with input names : id, name, header, author, responsable, nbserved
 router.post('/post/header', function (req, res){
     let techdoc = req.body;
-    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.description}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved}, 0, 0);`, function(result){
+    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.header}","${techdoc.author}","${techdoc.responsable}",${techdoc.nbserved}, 0, 0);`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc header has been added successfully.');
     });
 });
 
-// requires input form with input names : id, title, description, time
+// requires input form with input names : id, title, header, time
 router.post('/post/step', function (req, res){
     let step = req.body;
     database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.description}",${step.time});`, function(result){
@@ -79,17 +79,17 @@ router.post('/post/ingredientinstep', function (req, res){
 
 router.put('/put/header', function (req, res){
     let techdoc = req.body;
-    database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.description}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};`, function(result){
+    database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.header}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};`, function(result){
         console.log("Insert complete.");
-        res.status(200).send('Techdoc header has been updated successfully.');
+        res.status(200).send(techdoc);
     });
 });
 
-// requires input form with input names : id, title, description, time
+// requires input form with input names : id, title, header, time
 router.put('/put/step', function (req, res){
     let step = req.body;
     // TODO - replace queries
-    database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.description}",${step.time});`, function(result){
+    database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.header}",${step.time});`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc step has been added successfully.');
     });
