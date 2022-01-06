@@ -82,7 +82,7 @@ router.post('/put/header', function (req, res){
     database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.description}", author="${techdoc.author}", responsable="${techdoc.responsable}", nbserved=${techdoc.nbserved}, default=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};
     INSERT INTO technicaldoc VALUES (,"","","","",, 0, 0);`, function(result){
         console.log("Insert complete.");
-        res.status(200).send('Techdoc header has been added successfully.');
+        res.status(200).send('Techdoc header has been updated successfully.');
     });
 });
 
