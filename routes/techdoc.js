@@ -115,4 +115,20 @@ router.put('/put/ingredientinstep', function (req, res){
     });
 });
 
+router.delete('/delete', function (req, res) {
+    let body = req.body;
+    database.query(`DELETE FROM technicaldoc WHERE id = ${body.id});`, function (result) {
+        console.log("Delete complete.");
+        res.status(200).send('Techdoc header has been removed successfully.');
+    });
+});
+
+router.delete('/delete/step', function (req, res) {
+    let body = req.body;
+    database.query(`DELETE FROM step WHERE id = ${body.stepid});`, function (result) {
+        console.log("Delete complete.");
+        res.status(200).send('Techdoc step has been removed successfully.');
+    });
+});
+
 module.exports = router;
