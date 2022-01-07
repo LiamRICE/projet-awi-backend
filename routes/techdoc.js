@@ -44,7 +44,7 @@ WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
 // requires input form with input names : id, name, header, author, responsable, nbserved
 router.post('/post/header', function (req, res){
     let techdoc = req.body;
-    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.header}","${techdoc.author}","${techdoc.responsable}","${techdoc.category}",${techdoc.nbserved}, 0, 0);`, function(result){
+    database.query(`INSERT INTO technicaldoc VALUES (${techdoc.id},"${techdoc.name}","${techdoc.header}","${techdoc.author}","${techdoc.responsable}","${techdoc.category}",${techdoc.nbserved}, 1, 0);`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Techdoc header has been added successfully.');
     });
