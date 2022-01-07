@@ -5,6 +5,7 @@ function toTechdoc(data){
         header:data[0].header,
         author:data[0].author,
         responsable:data[0].responsable,
+        category:data[0].category,
         nbserved:data[0].nbserved,
         default:data[0].def,
         usecharges:data[0].usecharges,
