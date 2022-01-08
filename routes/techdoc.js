@@ -130,8 +130,16 @@ router.delete('/delete/step', function (req, res) {
     let body = req.body;
     database.query(`DELETE FROM step WHERE id = ${body.stepid};`, function (result) {
         console.log("Delete complete.");
-        res.status(200).send('Techdoc step has been removed successfully.');
+        res.status(200).send('Step has been removed successfully.');
     });
 });
+
+router.delete('/delete/ingredientinstep', function (req, res) {
+    let body = req.body;
+    database.query(`DELETE FROM stepusesingredient WHERE stepid = ${body.stepid} AND ingredientcode = ${body.ingredientcode};`, function (result) {
+        console.log("Delete complete.");
+        res.status(200).send('Ingredient has been removed successfully from step.');
+    });
+})
 
 module.exports = router;
