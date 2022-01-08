@@ -46,7 +46,7 @@ router.get('get/docid/:stepId', (req, res, next) => {
             res.status(200).send(result);
         })
 })
-
+// test
 router.get('/get/tickets', (req, res, next) => {
   database.query(
         `SELECT technicaldoc.id, technicaldoc.name, ingredients.code, ingredients.libelle, ingredients.stocks, ingredients.allergene, SUM(stepusesingredient.quantity) AS quantite 
