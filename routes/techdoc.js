@@ -105,17 +105,16 @@ router.put('/put/stepinheader', function (req, res){
     let step = req.body;
     database.query(`UPDATE stepsindoc SET rank=${step.rank} WHERE stepid=${step.stepid};`, function(result){
         console.log("Insert complete.");
-        res.status(200).send('Techdoc step has been added successfully to header.');
+        res.status(200).send('Techdoc step has been edited successfully to header.');
     });
 });
 
 // requires input form with input names : stepid, ingredientcode, quantity
 router.put('/put/ingredientinstep', function (req, res){
-    let sui = req.body;
-    // TODO - replace queries
-    database.query(`INSERT INTO stepusesingredient VALUES (${sui.stepid},${sui.ingredientcode},${sui.quantity});`, function(result){
+    let step = req.body;
+    database.query(`UPDATE stepusesingredient SET quantity=${step.quantity} WHERE ingredientcode=${step.ingredientcode};`, function(result){
         console.log("Insert complete.");
-        res.status(200).send('Techdoc header has been added successfully.');
+        res.status(200).send('Ingredient in step has been edited successfully.');
     });
 });
 
