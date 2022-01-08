@@ -23,7 +23,6 @@ ON header.stepid = bottom.bstepid ORDER BY rank ASC;`
 })
 
 router.get('/get/:techdocId', (req, res, next) => {
-    // doesn't yet return specific meal
     database.query(
         `SELECT * FROM (
 SELECT * FROM 
@@ -38,6 +37,13 @@ ON header.stepid = bottom.bstepid) AS full
 WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
         , (result)=>{
             res.status(200).send(techdocService.toTechdoc(result));
+        })
+})
+
+router.get('get/docid/:stepId', (req, res, next) => {
+    database.query(`SELECT docid FROM stepsindoc WHERE stepid=${req.params.stepId};`
+        ,(result) => {
+            res.status(200).send(result);
         })
 })
 
@@ -81,17 +87,16 @@ router.put('/put/header', function (req, res){
     let techdoc = req.body;
     database.query(`UPDATE technicaldoc SET name="${techdoc.name}", header="${techdoc.header}", author="${techdoc.author}", responsable="${techdoc.responsable}", category="${techdoc.category}", nbserved=${techdoc.nbserved}, def=${techdoc.default}, usecharges=${techdoc.usecharges} WHERE id=${techdoc.id};`, function(result){
         console.log("Insert complete.");
-        res.status(200).send(techdoc);
+        res.status(200).send('Techdoc header has been edited successfully.');
     });
 });
 
 // requires input form with input names : id, title, header, time
 router.put('/put/step', function (req, res){
     let step = req.body;
-    // TODO - replace queries
-    database.query(`INSERT INTO step VALUES (${step.id},"${step.title}","${step.header}",${step.time});`, function(result){
+    database.query(`UPDATE step SET title="${step.title}", description="${step.description}", time=${step.time} WHERE id=${step.stepid};`, function(result){
         console.log("Insert complete.");
-        res.status(200).send('Techdoc step has been added successfully.');
+        res.status(200).send('Techdoc step has been edited successfully.');
     });
 });
 
