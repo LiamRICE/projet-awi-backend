@@ -9,6 +9,7 @@ function toTechdoc(data){
         nbserved:data[0].nbserved,
         default:data[0].def,
         usecharges:data[0].usecharges,
+        assaisonemments:data[0].assaisonemments,
         steps:[]
     };
     let listOfStepIds = [];
