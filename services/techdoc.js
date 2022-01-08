@@ -101,6 +101,7 @@ function toTicket(data){
               code: data[i].code,  
               libelle: data[i].libelle,
               stocks: data[i].stocks,
+              unitprice: data[i].unitprice,
               allergene: data[i].allergene,
               quantite: data[i].quantite
             });
