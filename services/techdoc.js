@@ -72,8 +72,8 @@ function toTechdocList(data){
 function makeUniqueId(ids){
     let max = 0;
     ids.forEach((id) => {
-        if(id.id >= max){
-            max = id.id;
+        if(id >= max){
+            max = id;
         }
     });
     return max+1;
