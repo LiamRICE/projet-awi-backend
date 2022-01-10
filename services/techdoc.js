@@ -69,16 +69,6 @@ function toTechdocList(data){
     return listOfTechdocs;
 }
 
-function makeUniqueId(ids){
-    let max = 0;
-    ids.forEach((id) => {
-        if(id >= max){
-            max = id;
-        }
-    });
-    return max+1;
-}
-
 function toTicketList(data){
     let listOfTicketsIds= []
     for(let i=0; i<data.length; i++){
@@ -123,7 +113,6 @@ function toTicket(data){
 module.exports = {
     toTechdoc,
     toTechdocList,
-    makeUniqueId,
     toTicketList,
     toTicket,
 }
