@@ -125,5 +125,5 @@ module.exports = {
     toTechdocList,
     makeUniqueId,
     toTicketList,
-    toTicket
+    toTicket,
 }
