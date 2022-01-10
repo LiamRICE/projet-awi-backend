@@ -47,6 +47,13 @@ router.get('get/docid/:stepId', (req, res, next) => {
         })
 })
 
+router.get('get/uniqueStepid', (req, res, next) => {
+    database.query(`SELECT id FROM step;`
+        ,(result) => {
+            res.status(200).send(makeUniqueId(result));
+        })
+})
+
 // requires input form with input names : id, name, header, author, responsable, nbserved
 router.post('/post/header', function (req, res){
     let techdoc = req.body;

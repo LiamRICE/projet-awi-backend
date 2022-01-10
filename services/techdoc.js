@@ -69,7 +69,18 @@ function toTechdocList(data){
     return listOfTechdocs;
 }
 
+function makeUniqueId(ids){
+    let max = 0;
+    ids.forEach((id) => {
+        if(id.id >= max){
+            max = id.id;
+        }
+    });
+    return max+1;
+}
+
 module.exports = {
     toTechdoc,
     toTechdocList,
+    makeUniqueId,
 }
