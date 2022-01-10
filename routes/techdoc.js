@@ -49,7 +49,7 @@ router.get('/get/docid/:stepId', (req, res, next) => {
 })
 
 router.get('/get/stepid', (req, res, next) => {
-    database.query(`SELECT * FROM step;`
+    database.query(`SELECT stepid FROM stepsindoc;`
         ,(result) => {
             res.status(200).send(result);
         })
