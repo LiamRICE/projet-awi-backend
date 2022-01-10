@@ -51,7 +51,7 @@ router.get('get/docid/:stepId', (req, res, next) => {
 router.get('get/new/stepid', (req, res, next) => {
     database.query(`SELECT id FROM step;`
         ,(result) => {
-            res.status(200).send(techdocService.makeUniqueId(result));
+            res.status(200).send(result);
         })
 })
 
