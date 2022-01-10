@@ -117,7 +117,10 @@ function getFreeId(data){
             free = i.id;
         }
     })
-    return free;
+    d = {
+        "stepid":free,
+    }
+    return d;
 }
 
 module.exports = {
