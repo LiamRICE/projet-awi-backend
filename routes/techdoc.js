@@ -48,8 +48,8 @@ router.get('/get/docid/:stepId', (req, res, next) => {
         })
 })
 
-router.get('/get/stepid/:stepId', (req, res, next) => {
-    database.query(`SELECT * FROM step WHERE id=${req.params.stepId};`
+router.get('/get/stepid', (req, res, next) => {
+    database.query(`SELECT * FROM step;`
         ,(result) => {
             res.status(200).send(result);
         })
