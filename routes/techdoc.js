@@ -41,14 +41,14 @@ WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
 })
 
 // peut provoquer soucis
-router.get('get/docid/:stepId', (req, res, next) => {
+router.get('/get/docid/:stepId', (req, res, next) => {
     database.query(`SELECT docid FROM stepsindoc WHERE stepid=${req.params.stepId};`
         ,(result) => {
             res.status(200).send(result);
         })
 })
 
-router.get('get/stepid', (req, res, next) => {
+router.get('/get/stepid', (req, res, next) => {
     database.query(`SELECT id FROM step;`
         ,(result) => {
             res.status(200).send(result);
