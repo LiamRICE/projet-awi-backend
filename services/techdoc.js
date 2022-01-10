@@ -118,7 +118,7 @@ function getFreeId(data){
         }
     })
     d = {
-        "stepid":free,
+        "stepid":free+1,
     }
     return d;
 }
