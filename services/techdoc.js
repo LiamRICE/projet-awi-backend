@@ -110,9 +110,20 @@ function toTicket(data){
     return header;
 }
 
+function getFreeId(data){
+    let free = 0;
+    data.forEach((i) => {
+        if(i.id >= free){
+            free = i.id;
+        }
+    })
+    return free;
+}
+
 module.exports = {
     toTechdoc,
     toTechdocList,
     toTicketList,
     toTicket,
+    getFreeId,
 }
