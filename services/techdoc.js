@@ -79,8 +79,51 @@ function makeUniqueId(ids){
     return max+1;
 }
 
+function toTicketList(data){
+    let listOfTicketsIds= []
+    for(let i=0; i<data.length; i++){
+        if(!listOfTicketsIds.includes(data[i].id)){
+            listOfTicketsIds.push(data[i].id);
+        }
+    }
+    let listOfTickets= []
+    listOfTicketsIds.forEach((id) => {
+        let list = []
+        for(let i=0; i<data.length; i++){
+            if(id == data[i].id){
+                list.push(data[i]);
+            }
+        }
+        listOfTickets.push(toTicket(list));
+    });
+    return listOfTickets;
+}
+
+function toTicket(data){
+     let header = {
+        id:data[0].id,
+        name:data[0].name,
+        ingredients:[]
+    };
+    for(let i=0; i<data.length; i++) {
+        if (data[i].code != null) {
+            header.ingredients.push({
+              code: data[i].code,
+              libelle: data[i].libelle,
+              stocks: data[i].stocks,
+              unitprice: data[i].unitprice,
+              allergene: data[i].allergene,
+              quantite: data[i].quantite
+            });
+        }
+    }
+    return header;
+}
+
 module.exports = {
     toTechdoc,
     toTechdocList,
     makeUniqueId,
+    toTicketList,
+    toTicket
 }

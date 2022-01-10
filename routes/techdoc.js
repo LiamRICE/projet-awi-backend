@@ -40,6 +40,7 @@ WHERE full.id=${req.params.techdocId} ORDER By rank ASC;`
         })
 })
 
+// peut provoquer soucis
 router.get('get/docid/:stepId', (req, res, next) => {
     database.query(`SELECT docid FROM stepsindoc WHERE stepid=${req.params.stepId};`
         ,(result) => {
@@ -47,11 +48,17 @@ router.get('get/docid/:stepId', (req, res, next) => {
         })
 })
 
-router.get('get/uniqueStepid', (req, res, next) => {
-    database.query(`SELECT id FROM step;`
-        ,(result) => {
-            res.status(200).send(makeUniqueId(result));
-        })
+router.get('/tickets', (req, res, next) => {
+  database.query(
+        `SELECT technicaldoc.id, technicaldoc.name, ingredients.code, ingredients.libelle, ingredients.stocks, ingredients.unitprice, ingredients.allergene, SUM(stepusesingredient.quantity) AS quantite 
+        FROM technicaldoc LEFT OUTER JOIN stepsindoc ON technicaldoc.id = stepsindoc.docid 
+        LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = stepsindoc.stepid 
+        LEFT OUTER JOIN ingredients ON ingredients.code = stepusesingredient.ingredientcode 
+        GROUP BY technicaldoc.id, ingredients.code 
+        ORDER BY technicaldoc.id ASC, stepsindoc.rank ASC, ingredients.code ASC`
+, (result)=>{
+  res.status(200).send(techdocService.toTicketList(result));
+})
 })
 
 // requires input form with input names : id, name, header, author, responsable, nbserved
