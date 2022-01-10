@@ -51,7 +51,7 @@ router.get('/get/docid/:stepId', (req, res, next) => {
 router.get('/get/stepid', (req, res, next) => {
     database.query(`SELECT id FROM step;`
         ,(result) => {
-            res.status(200).send(result);
+            res.status(200).send(result[0]);
         })
 })
 
@@ -62,10 +62,10 @@ router.get('/tickets', (req, res, next) => {
         LEFT OUTER JOIN stepusesingredient ON stepusesingredient.stepid = stepsindoc.stepid 
         LEFT OUTER JOIN ingredients ON ingredients.code = stepusesingredient.ingredientcode 
         GROUP BY technicaldoc.id, ingredients.code 
-        ORDER BY technicaldoc.id ASC, stepsindoc.rank ASC, ingredients.code ASC`
-, (result)=>{
-  res.status(200).send(techdocService.toTicketList(result));
-})
+        ORDER BY technicaldoc.id ASC, stepsindoc.rank ASC, ingredients.code ASC;`
+    , (result)=>{
+      res.status(200).send(techdocService.toTicketList(result));
+    })
 })
 
 // requires input form with input names : id, name, header, author, responsable, nbserved
