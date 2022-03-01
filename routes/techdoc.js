@@ -133,7 +133,7 @@ router.put('/put/stepinheader', function (req, res){
 // requires input form with input names : stepid, ingredientcode, quantity
 router.put('/put/ingredientinstep', function (req, res){
     let step = req.body;
-    database.query(`UPDATE stepusesingredient SET quantity=${step.quantity} WHERE ingredientcode=${step.ingredientcode};`, function(result){
+    database.query(`UPDATE stepusesingredient SET quantity=${step.quantity} WHERE ingredientcode=${step.ingredientcode} and stepid=${step.stepid};`, function(result){
         console.log("Insert complete.");
         res.status(200).send('Ingredient in step has been edited successfully.');
     });
